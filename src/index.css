@@ -1,0 +1,25 @@
+main {
+  min-height: 85vh;
+  background: rgba(238, 238, 238, 0.322);
+}
+h3 {
+  padding: 1rem 0;
+}
+h1 {
+  font-size: 1.8rem !important;
+  padding: 1rem 0;
+}
+h2 {
+  font-size: 1.4rem !important;
+  padding: 0.5rem 0;
+}
+.logo {
+  height: 4rem !important;
+}
+.product-image {
+  height: 220px;
+}
+.footer {
+  background: #272727;
+  color: #ffff;
+}
