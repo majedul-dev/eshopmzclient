@@ -19,6 +19,7 @@ import {
   ORDER_DELEVERY_SUCCESS,
   ORDER_DELEVERY_FAIL,
 } from "../constants/orderConstants";
+import base_URL from "../config/mode";
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -34,11 +35,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(
-      `https://eshopmzserver.herokuapp.com/api/orders`,
-      order,
-      config
-    );
+    const { data } = await axios.post(`${base_URL}/api/orders`, order, config);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (error) {
@@ -66,7 +63,7 @@ export const getOrderDetails = (orderId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `https://eshopmzserver.herokuapp.com/api/orders/${orderId}`,
+      `${base_URL}/api/orders/${orderId}`,
       config
     );
 
@@ -101,7 +98,7 @@ export const payOrder = (orderId, paymentResult) => async (
     };
 
     const { data } = await axios.put(
-      `https://eshopmzserver.herokuapp.com/api/orders/${orderId}/pay`,
+      `${base_URL}/api/orders/${orderId}/pay`,
       paymentResult,
       config
     );
@@ -132,10 +129,7 @@ export const myOrderLists = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      "https://eshopmzserver.herokuapp.com/api/orders/myorders",
-      config
-    );
+    const { data } = await axios.get(`${base_URL}/api/orders/myorders`, config);
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -162,10 +156,7 @@ export const getOrderList = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      "https://eshopmzserver.herokuapp.com/api/orders",
-      config
-    );
+    const { data } = await axios.get(`${base_URL}/api/orders`, config);
 
     dispatch({ type: GET_ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -198,7 +189,7 @@ export const orderDelivery = (orderId, deleveredResult) => async (
     };
 
     const { data } = await axios.put(
-      `https://eshopmzserver.herokuapp.com/api/orders/${orderId}/delivery`,
+      `${base_URL}/api/orders/${orderId}/delivery`,
       deleveredResult,
       config
     );

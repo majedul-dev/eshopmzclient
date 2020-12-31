@@ -5,11 +5,10 @@ import {
   CART_SAVE_PAYMENT_METHOD,
   CART_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
+import base_URL from "../config/mode";
 
 export const addToCartItem = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(
-    `https://eshopmzserver.herokuapp.com/api/products/${id}`
-  );
+  const { data } = await axios.get(`${base_URL}/api/products/${id}`);
 
   dispatch({
     type: CART_ADD_ITEM,

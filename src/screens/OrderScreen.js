@@ -8,6 +8,7 @@ import Message from "../components/Message";
 import { getOrderDetails, payOrder } from "../actions/orderAction";
 import Loader from "../components/Loader";
 import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import base_URL from "../config/mode";
 
 const PlaceOrderScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -32,7 +33,7 @@ const PlaceOrderScreen = ({ match }) => {
   useEffect(() => {
     const addPaypalScript = async () => {
       const { data: clientId } = await axios.get(
-        "https://eshopmzserver.herokuapp.com/api/config/paypal"
+        `${base_URL}/api/config/paypal`
       );
       const script = document.createElement("script");
       script.type = "text/javascript";
