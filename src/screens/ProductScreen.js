@@ -181,7 +181,7 @@ const ProductScreen = ({ match, history }) => {
                 </Form>
               ) : (
                 <div>
-                  Please <Link to='/signin'>Sign-in</Link> to write a review.
+                  Please <Link to='/login'>Sign-in</Link> to write a review.
                 </div>
               )}
             </Col>
