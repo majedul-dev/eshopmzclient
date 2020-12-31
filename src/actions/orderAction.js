@@ -34,7 +34,11 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/orders`, order, config);
+    const { data } = await axios.post(
+      `https://eshopmzserver.herokuapp.com/api/orders`,
+      order,
+      config
+    );
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (error) {
@@ -61,7 +65,10 @@ export const getOrderDetails = (orderId) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders/${orderId}`, config);
+    const { data } = await axios.get(
+      `https://eshopmzserver.herokuapp.com/api/orders/${orderId}`,
+      config
+    );
 
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -94,7 +101,7 @@ export const payOrder = (orderId, paymentResult) => async (
     };
 
     const { data } = await axios.put(
-      `/api/orders/${orderId}/pay`,
+      `https://eshopmzserver.herokuapp.com/api/orders/${orderId}/pay`,
       paymentResult,
       config
     );
@@ -125,7 +132,10 @@ export const myOrderLists = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/orders/myorders", config);
+    const { data } = await axios.get(
+      "https://eshopmzserver.herokuapp.com/api/orders/myorders",
+      config
+    );
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -152,7 +162,10 @@ export const getOrderList = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/orders", config);
+    const { data } = await axios.get(
+      "https://eshopmzserver.herokuapp.com/api/orders",
+      config
+    );
 
     dispatch({ type: GET_ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -185,7 +198,7 @@ export const orderDelivery = (orderId, deleveredResult) => async (
     };
 
     const { data } = await axios.put(
-      `/api/orders/${orderId}/delivery`,
+      `https://eshopmzserver.herokuapp.com/api/orders/${orderId}/delivery`,
       deleveredResult,
       config
     );
