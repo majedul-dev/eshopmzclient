@@ -26,6 +26,7 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
 } from "../constants/userConstants";
+import base_URL from "../config/mode";
 
 export const loginUser = (email, password) => async (dispatch) => {
   try {
@@ -36,7 +37,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://eshopmzserver.herokuapp.com/api/users/login",
+      `${base_URL}/api/users/login`,
       { email, password },
       config
     );
@@ -64,7 +65,7 @@ export const registerUser = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://eshopmzserver.herokuapp.com/api/users",
+      `${base_URL}/api/users`,
       { name, email, password },
       config
     );
@@ -98,10 +99,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `https://eshopmzserver.herokuapp.com/api/users/profile`,
-      config
-    );
+    const { data } = await axios.get(`${base_URL}/api/users/profile`, config);
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -131,7 +129,7 @@ export const userUpdate = (user) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `https://eshopmzserver.herokuapp.com/api/users/profile`,
+      `${base_URL}/api/users/profile`,
       user,
       config
     );
@@ -166,10 +164,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      "https://eshopmzserver.herokuapp.com/api/users",
-      config
-    );
+    const { data } = await axios.get(`${base_URL}/api/users`, config);
 
     dispatch({ type: USER_ALL_GET_SUCCESS, payload: data });
   } catch (error) {
@@ -197,10 +192,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(
-      `https://eshopmzserver.herokuapp.com/api/users/${id}`,
-      config
-    );
+    await axios.delete(`${base_URL}/api/users/${id}`, config);
 
     dispatch({ type: USER_DELETE_SUCCESS });
   } catch (error) {
@@ -228,10 +220,7 @@ export const getUserForUpdate = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `https://eshopmzserver.herokuapp.com/api/users/${id}`,
-      config
-    );
+    const { data } = await axios.get(`${base_URL}/api/users/${id}`, config);
 
     dispatch({ type: USER_GET_FOR_UPDATE_SUCCESS, payload: data });
   } catch (error) {
@@ -264,7 +253,7 @@ export const userUpdateByAdmin = (userId, user) => async (
     };
 
     const { data } = await axios.put(
-      `https://eshopmzserver.herokuapp.com/api/users/${userId}`,
+      `${base_URL}/api/users/${userId}`,
       user,
       config
     );
