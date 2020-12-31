@@ -35,7 +35,11 @@ export const createProduct = (product) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post("/api/products", product, config);
+    const { data } = await axios.post(
+      "https://eshopmzserver.herokuapp.com/api/products",
+      product,
+      config
+    );
     dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -67,7 +71,7 @@ export const updateProduct = (productId, product) => async (
     };
 
     const { data } = await axios.put(
-      `/api/products/${productId}`,
+      `https://eshopmzserver.herokuapp.com/api/products/${productId}`,
       product,
       config
     );
@@ -87,7 +91,9 @@ export const listProducts = () => async (dispatch) => {
   dispatch({ type: GET_PRODUCT_REQUEST });
 
   try {
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.get(
+      "https://eshopmzserver.herokuapp.com/api/products"
+    );
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     console.log(error.message);
@@ -105,7 +111,9 @@ export const productDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(
+      `https://eshopmzserver.herokuapp.com/api/products/${id}`
+    );
     dispatch({ type: GET_PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -132,7 +140,10 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`/api/products/${productId}`, config);
+    await axios.delete(
+      `https://eshopmzserver.herokuapp.com/api/products/${productId}`,
+      config
+    );
 
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
@@ -165,7 +176,7 @@ export const productReviewSaveAction = (id, review) => async (
     };
 
     const { data } = await axios.post(
-      `/api/products/${id}/reviews`,
+      `https://eshopmzserver.herokuapp.com/api/products/${id}/reviews`,
       review,
       config
     );
